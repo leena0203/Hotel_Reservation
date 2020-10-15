@@ -1,5 +1,7 @@
 package com.HotelReservation;
 
+import java.util.Scanner;
+
 public class Hotel {
 	String name;
 	int weekdayRate, weekendRate;
@@ -26,6 +28,13 @@ public class Hotel {
 		this.name = name;
 		this.weekdayRate = weekdayRate;
 	}
+	public Hotel(String name, int weekdayRate, int weekendRate) {
+		super();
+		this.name = name;
+		this.weekdayRate = weekdayRate;
+		this.weekendRate = weekendRate;
+	}
+	
 
 }
 

@@ -8,20 +8,25 @@ import java.util.List;
 import java.util.Scanner;
 
 public class HotelReservation {
-	//public static Map<String, Hotel> hotelMap = new HashMap<>();
 	public static List<Hotel> hotelList = new ArrayList<>(); 
 
 	/**
 	 * UC1_Add hotel name and week rate rate
 	 */
 	public static void addHotel(String name,int weekdayRate) {
-		Hotel H1 = new Hotel("Lakewood",110);
-		Hotel H2 = new Hotel("Bridgewood",160);
-		Hotel H3 = new Hotel("Ridgewood",220);
+		Hotel H1 = new Hotel(name,weekdayRate);
 		hotelList.add(H1);
-		hotelList.add(H2);
-		hotelList.add(H3);
+		
 	}
+	/**
+	 * UC3_Add hotel name and week rate rate and weekendRate
+	 */
+	public static void addHotel(String name,int weekdayRate,int weekendRate) {
+		Hotel H1 = new Hotel(name,weekdayRate, weekendRate);
+		hotelList.add(H1);
+		
+	}
+	
 
 	/**
 	 * String to local date format
@@ -37,8 +42,6 @@ public class HotelReservation {
 
 	/**
 	 * UC2_Cheapest hotel
-	 * @param string2 
-	 * @param string 
 	 * @param departure 
 	 * @param arrival 
 	 * @return 
@@ -67,10 +70,14 @@ public class HotelReservation {
 		return cheapHotel;
 		
 	}
+	public int size() {
+		return hotelList.size() ;
+	}
 
 //	public static void main(String[] args) {
 //		System.out.println("Welcome to Hotel Reservation Program");
 //		addHotel();
-//		cheapestHotel("10 Sep 2020","11 Sep 2020");
+//		//cheapestHotel("10 Sep 2020","11 Sep 2020");
 //	}
 }
+

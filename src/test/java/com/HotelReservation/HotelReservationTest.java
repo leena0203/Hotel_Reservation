@@ -1,5 +1,6 @@
 package com.HotelReservation;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
@@ -19,5 +20,21 @@ class HotelReservationTest {
 		assertEquals("Lakewood",result);
 
 	}
+	
+	/**
+	 * UC3_Add hotel name and weekday and weekend rates
+	 */
+	@Test
+	public void givenHotelNameAndWeekendRate_shouldReturn_listSize() {
+		
+		HotelReservation test = new HotelReservation();
+		test.addHotel("Lakewood", 110,90);
+		test.addHotel("Bridgewood",150,50);
+		test.addHotel("Ridgewood",220,150);
+		int result = test.hotelList.size();
+		assertEquals(3, result);
+	}
+	
+	
 
 }
