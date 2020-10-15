@@ -21,11 +21,11 @@ public class Hotel {
 	public void setWeekendRate(int weekendRate) {
 		this.weekendRate = weekendRate;
 	}
-	public Hotel(String name, int weekdayRate, int weekendRate) {
+	public Hotel(String name, int weekdayRate) {
+		super();
 		this.name = name;
 		this.weekdayRate = weekdayRate;
-		this.weekendRate = weekendRate;
-
 	}
+
 }
 
