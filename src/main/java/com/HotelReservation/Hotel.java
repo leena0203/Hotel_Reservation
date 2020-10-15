@@ -4,7 +4,20 @@ import java.util.Scanner;
 
 public class Hotel {
 	String name;
-	int weekdayRate, weekendRate;
+	int weekdayRate, weekendRate,rating;
+	public int getRating() {
+		return rating;
+	}
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
+	public Hotel(String name, int weekdayRate, int weekendRate, int rating) {
+		super();
+		this.name = name;
+		this.weekdayRate = weekdayRate;
+		this.weekendRate = weekendRate;
+		this.rating = rating;
+	}
 	public String getName() {
 		return name;
 	}

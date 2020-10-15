@@ -18,6 +18,7 @@ public class HotelReservation {
 		Hotel H1 = new Hotel(name,weekdayRate);
 		hotelList.add(H1);
 	}
+	
 	/**
 	 * UC3_Add hotel name and week rate rate and weekendRate
 	 */
@@ -25,6 +26,19 @@ public class HotelReservation {
 		Hotel H1 = new Hotel(name,weekdayRate, weekendRate);
 		hotelList.add(H1);
 	}
+	
+	/**
+	 * UC5_Add hotel name,weekday rate,weekend rate, rating
+	 * @param name
+	 * @param weekdayRate
+	 * @param weekendRate
+	 * @param rating
+	 */
+	public static void addHotel(String name,int weekdayRate,int weekendRate, int rating) {
+		Hotel H2 = new Hotel(name,weekdayRate, weekendRate, rating);
+		hotelList.add(H2);
+	}
+	
 	/**
 	 * String to local date format
 	 * @param date
