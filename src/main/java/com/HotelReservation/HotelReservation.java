@@ -152,7 +152,7 @@ public class HotelReservation {
 	}
 	
 	/**
-	 * 
+	 * UC7_best rated hotel
 	 * @return
 	 */
 	public ArrayList<Hotel> findCheapestBestRatedHotels(){
