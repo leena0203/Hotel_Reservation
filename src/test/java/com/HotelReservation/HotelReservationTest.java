@@ -1,102 +1,99 @@
 package com.HotelReservation;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.*;
-
+import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
 class HotelReservationTest {
-
-	//	/**
-	//	 * UC2_Return cheapest hotel name
-	//	 */
-	//	@Test
-	//	void cheapestMethod_shouldReturn_hotelName() {
-	//		HotelReservation test = new HotelReservation();
-	//		test.addHotel("Lakewood", 110);
-	//		test.addHotel("Bridgewood",160);
-	//		test.addHotel("Ridgewood",220);
-	//		String result = test.findCheapestHotel("10 Sep 2020", "11 Sep 2020");
-	//		assertEquals("Lakewood",result);
-	//	}
-	//	/**
-	//	 * UC4_Return cheapest hotel name
-	//	 */
-	//	@Test
-	//	void givenDateAndRateOfStay_shouldReturn_cheapesthotelName() {
-	//		HotelReservation test = new HotelReservation();
-	//		test.addHotel("Lakewood", 110,90);
-	//		test.addHotel("Bridgewood",150,50);
-	//		test.addHotel("Ridgewood",220,150);
-	//		List<Hotel> result = test.minimumRate("11 Sep 2020", "12 Sep 2020");
-	//		assertEquals("Bridgewood",result.get(0).getName());2
-	//		assertEquals("Lakewood",result.get(1).getName());
-	//	}
-
 	/**
-	 * UC6_Return best rated cheapest hotel
+	 * TestCase 1
+	 * Test for adding the hotels to the system
 	 */
 	@Test
-	void givenDateAndRateOfStayAndRating_shouldReturn_cheapesthotelName() {
-		HotelReservation test = new HotelReservation();
-		//		test.addHotel("Lakewood", 110,90,3);
-		//		test.addHotel("Bridgewood",150,50,4);
-		//		test.addHotel("Ridgewood",220,150,5);
-		test.addHotel();
-		ArrayList<Hotel> cheapest = test.minimumRate();
-		ArrayList<Hotel> bestRated = test.bestRatedHotel(cheapest);
-		//System.out.println(.size());
-		assertEquals("Bridgewood",cheapest.get(0).getName());
-
+	public void whenHotelAdded_toReservationSystem_shouldReturnSizeOne() {
+		Scanner input = new Scanner(System.in);
+		HotelReservation reservation = new HotelReservation();
+		reservation.addHotel(input);
+		assertEquals(1, reservation.hotelList.size());
 	}
-
 	/**
-	 * UC7_Return best rated  hotel
+	 * TestCase 4
+	 * Test for finding cheapest Hotels for variable rates
+	 * 
 	 */
 	@Test
-	void givenDateAndRateOfStayAndRating_shouldReturn_bestRatedhotelName() {
-		HotelReservation test = new HotelReservation();
-		test.addHotel();
-		ArrayList<Hotel> cheapest = test.minimumRate();
-		ArrayList<Hotel> bestRated = test.bestRatedHotel(cheapest);
-		//System.out.println(.size());
-		assertEquals("Ridgewood",bestRated.get(0).getName());
-
+	public void whenCalled_findCheapestHotelFunction_shouldReturnCheapestHotel() {
+		Scanner input = new Scanner(System.in);
+		HotelReservation reservation = new HotelReservation();
+		reservation.addHotel(input);
+		reservation.addHotel(input);
+		reservation.addHotel(input);
+		Hotel hotel = new Hotel("LakeWood", 110, 90, 4);
+		ArrayList<Hotel> hotelList = new ArrayList<Hotel>();
+		hotelList.add(hotel);
+		assertEquals(hotelList, reservation.findCheapestHotel(input));
 	}
-
-	//	
-	//	/**
-	//	 * UC3_Add hotel name and weekday and weekend rates
-	//	 */
-	//	@Test
-	//	public void givenHotelNameAndWeekendRate_shouldReturn_listSize() {
-	//		
-	//		HotelReservation test = new HotelReservation();
-	//		test.addHotel("Lakewood", 110,90);
-	//		test.addHotel("Bridgewood",150,50);
-	//		test.addHotel("Ridgewood",220,150);
-	//		int result = test.hotelList.size();
-	//		assertEquals(3, result);
-	//	}
-
-	//			/**
-	//			 * UC5_Add hotel name and weekday and weekend rates and rating
-	//			 */
-	//			@Test
-	//			public void givenHotelNameAndWeekendRateAndRating_shouldReturn_listSize() {
-	//		
-	//				HotelReservation test = new HotelReservation();
-	//				test.addHotel("Lakewood", 110,90, 3);
-	//				test.addHotel("Bridgewood",150,50, 4);
-	//				test.addHotel("Ridgewood",220,150, 5);
-	//				int result = test.hotelList.size();
-	//				assertEquals(3, result);
-	//}
-
-
-
-
+	/**
+	 * TestCase 3
+	 * 
+	 */
+	@Test
+	public void whenHotelAdded_toReservationSystem_withWeekdayAndWeekendRates_shouldReturnSizeAs3() {
+		Scanner input = new Scanner(System.in);
+		HotelReservation reservation = new HotelReservation();
+		reservation.addHotel(input);
+		reservation.addHotel(input);
+		reservation.addHotel(input);
+		assertEquals(3, reservation.hotelList.size());
+	}
+	/**
+	 * TestCase 5
+	 */
+	@Test
+	public void whenHotelAdded_toReservationSystem_withRatings_shouldReturnSizeAs1() {
+		Scanner input = new Scanner(System.in);
+		HotelReservation reservation = new HotelReservation();
+		reservation.addHotel(input);
+		assertEquals(1,reservation.hotelList.size());
+	}
+	/**
+	 * TestCase 6
+	 */
+	@Test	
+	public void whenCalled_findCheapestHotelFunction_withGivenRating_shouldReturnCheapestHotel() {
+		Scanner input = new Scanner(System.in);
+		HotelReservation reservation = new HotelReservation();
+		reservation.addHotel(input);
+		reservation.addHotel(input);
+		reservation.addHotel(input);
+		Hotel hotel = new Hotel("LakeWood", 90, 4, 110);
+		ArrayList<Hotel> hotelList = new ArrayList<Hotel>();
+		hotelList.add(hotel);
+		assertEquals(hotelList, reservation.findCheapestHotel(input));
+	}
+	/**
+	 * Testcase 7
+	 */
+	@Test 
+	public void whenCalled_findBestRatedHotelFunction_withGivenRating_shouldReturnBestRatedHotel() { 
+		Scanner input = new Scanner(System.in); 
+		HotelReservation reservation =new HotelReservation(); 
+		reservation.addHotel(input);
+		reservation.addHotel(input); 
+		reservation.addHotel(input);
+		Hotel hotel = new Hotel("RidgeWood", 220, 150, 5); 
+		ArrayList<Hotel> hotelList = new ArrayList<Hotel>();
+		hotelList.add(hotel);
+		assertTrue(reservation.findBestRatedHotels(input).equals(hotelList)); 
+		}
+	@Test
+	public void whenthreeHotelAdded_toReservationSystem_shouldReturnSizeAs3() {
+		Scanner input = new Scanner(System.in);
+		HotelReservation reservation = new HotelReservation();
+		reservation.addHotel(input);
+		assertEquals(3, reservation.hotelList.size());
+	}
 }

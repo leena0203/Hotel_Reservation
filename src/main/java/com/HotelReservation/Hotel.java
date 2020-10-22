@@ -3,7 +3,7 @@ package com.HotelReservation;
 import java.util.Scanner;
 
 public class Hotel {
-	String name;
+	String name,customerType;
 	int weekdayRate, weekendRate,rating;
 	public int getRating() {
 		return rating;
@@ -17,6 +17,21 @@ public class Hotel {
 		this.weekdayRate = weekdayRate;
 		this.weekendRate = weekendRate;
 		this.rating = rating;
+		
+	}
+	public Hotel(String name, String customerType, int weekdayRate, int weekendRate, int rating) {
+		super();
+		this.name = name;
+		this.customerType = customerType;
+		this.weekdayRate = weekdayRate;
+		this.weekendRate = weekendRate;
+		this.rating = rating;
+	}
+	public String getCustomerType() {
+		return customerType;
+	}
+	public void setCustomerType(String customerType) {
+		this.customerType = customerType;
 	}
 	public String getName() {
 		return name;
