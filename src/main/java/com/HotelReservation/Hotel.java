@@ -47,6 +47,9 @@ public class Hotel {
 		this.weekdayRate = weekdayRate;
 		this.weekendRate = weekendRate;
 	}
+	public String toString() {
+		return this.getName();
+	}
 	
 
 }

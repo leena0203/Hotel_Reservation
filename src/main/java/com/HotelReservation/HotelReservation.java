@@ -13,34 +13,40 @@ import java.util.Scanner;
 import java.lang.Iterable;
 
 public class HotelReservation {
-	public static List<Hotel> hotelList = new ArrayList<>(); 
+	public static ArrayList<Hotel> hotelList = new ArrayList<>(); 
 
-	/**
-	 * UC1_Add hotel name and week rate rate
-	 */
-	public static void addHotel(String name,int weekdayRate) {
-		Hotel H1 = new Hotel(name,weekdayRate);
+	//	/**
+	//	 * UC1_Add hotel name and week rate rate
+	//	 */
+	//	public static void addHotel(String name,int weekdayRate) {
+	//		Hotel H1 = new Hotel(name,weekdayRate);
+	//		hotelList.add(H1);
+	//	}
+	//
+	//	/**
+	//	 * UC3_Add hotel name and week rate rate and weekendRate
+	//	 */
+	//	public static void addHotel(String name,int weekdayRate,int weekendRate) {
+	//		Hotel H1 = new Hotel(name,weekdayRate, weekendRate);
+	//		hotelList.add(H1);
+	//	}
+	//
+	//	/**
+	//	 * UC5_Add hotel name,weekday rate,weekend rate, rating
+	//	 * @param name
+	//	 * @param weekdayRate
+	//	 * @param weekendRate
+	//	 * @param rating
+	//	 */
+	public static void addHotel() {
+		//(String name,int weekdayRate,int weekendRate, int rating) {
+		//Hotel H2 = new Hotel(name,weekdayRate, weekendRate, rating);
+		Hotel H1= new Hotel("Lakewood", 110,90,3);
+		Hotel H2= new Hotel("Bridgewood",150,50,4);
+		Hotel H3= new Hotel("Ridgewood",220,150,5);
 		hotelList.add(H1);
-	}
-
-	/**
-	 * UC3_Add hotel name and week rate rate and weekendRate
-	 */
-	public static void addHotel(String name,int weekdayRate,int weekendRate) {
-		Hotel H1 = new Hotel(name,weekdayRate, weekendRate);
-		hotelList.add(H1);
-	}
-
-	/**
-	 * UC5_Add hotel name,weekday rate,weekend rate, rating
-	 * @param name
-	 * @param weekdayRate
-	 * @param weekendRate
-	 * @param rating
-	 */
-	public static void addHotel(String name,int weekdayRate,int weekendRate, int rating) {
-		Hotel H2 = new Hotel(name,weekdayRate, weekendRate, rating);
 		hotelList.add(H2);
+		hotelList.add(H3);
 	}
 
 
@@ -75,51 +81,31 @@ public class HotelReservation {
 	}
 
 	/**
-	 * UC2_Cheapest hotel
-	 * UC4_Refactored to find cheapest hotel with weekends rate
-	 * @param departure2 
-	 * @param  
-	 * @param departure 
-	 * @param arrival 
-	 * @return 
-	 */
-
-	//	public  List<Hotel> findCheapestHotel(String arrival, String departure) {
-	//		//		Scanner sc = new Scanner(System.in);
-	//		//		System.out.println("Enter Arrival Date: ");
-	//		//		String arrival = sc.nextLine();
-	//		//		System.out.println("Enter Departure Date: ");
-	//		//		String departure = sc.nextLine();
-	//		//LocalDate localDate1 = stringToLocalDate(arrival);
-	//		//LocalDate localDate2 = stringToLocalDate(departure);
-	//		int[] numOfDays = numberOfDays(arrival, departure);
-	//		//List<Hotel> cheapstHotelsList = new ArrayList<>();
-	//		//int cost = Integer.MAX_VALUE;
-	//		//String cheapHotel = "";
-	//		List<Hotel> cheapHotel = (List<Hotel>) this.minimumRate(arrival, departure);
-	//		//int newCost1 = cheapHotel.weekdayRate*numOfDays[0] ;
-	//		//int newcost2 = cheapHotel.weekendRate*numOfDays[1];
-	//		//int cost = newCost1 +newcost2; 
-	//		//System.out.println("Cheapest hotel : " + cheapHotel.name + ",  Rates : $" + cost)
-	//		return cheapHotel;
-	//
-	//	}
-
-	/**
 	 * UC4 Return hotel with cheapest rate and best rating
 	 * @param arrival
 	 * @param departure
 	 * @return
 	 */
 
-	public static List<Hotel> minimumRate(String arrival, String departure) {
-		int min = 0;
+	public  ArrayList<Hotel> minimumRate(){
+		//(String arrival, String departure) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter Arrival Date: ");
+		String arrival = sc.nextLine();
+		System.out.println("Enter Departure Date: ");
+		String departure = sc.nextLine();
+		//LocalDate localDate1 = stringToLocalDate(arrival);
+		//LocalDate localDate2 = stringToLocalDate(departure);
+		//int[] numOfDays = numberOfDays(arrival, departure);
 		int[] numOfDays = numberOfDays(arrival, departure);
-		List<Hotel> cheapestHotels = new ArrayList<Hotel>();
+		int min = 0;
+		ArrayList<Hotel> cheapestHotels = new ArrayList<Hotel>();
 		HashMap<Hotel, Integer> hotelMap = new HashMap<Hotel, Integer>();
+		//HashMap<Hotel, Integer> ratingMap = new HashMap<Hotel, Integer>();
 		for(Hotel hotel : hotelList) {
 			int totalRate = hotel.weekdayRate * numOfDays[0] + hotel.weekendRate * numOfDays[1];
 			hotelMap.put(hotel, totalRate);
+			//ratingMap.put(hotel, hotel.getRating());
 		}
 		min = Collections.min(hotelMap.values());
 		for(Map.Entry<Hotel, Integer> entry : hotelMap.entrySet()) {
@@ -127,19 +113,68 @@ public class HotelReservation {
 				cheapestHotels.add(entry.getKey());
 			}
 		}
-		for(Hotel hotel : cheapestHotels) {
-			System.out.println(hotel.getName() + " Total Rate : " + min);
-		}
+
+		//		int maxRating = 0; //Collections.max(ratingMap.values());
+		//		//System.out.println(maxRating);
+		//		String rated ="";
+		//		for(Hotel hotel : cheapestHotels) {
+		//			if(hotel.getRating() > maxRating) {
+		//				//cheapestHotels.remove(hotel);
+		//				rated = hotel.getName();
+		//			}
+		//			
+		//		}
+		//			rated = hotel.getName();
+		//			maxRating = hotel.getRating();
+		//		}
+		//		System.out.println(rated + "Rating: "+maxRating+ " total rate: "+min);
 		return cheapestHotels;
+	}
+
+	public  ArrayList<Hotel> bestRatedHotel(ArrayList<Hotel> cheapestHotels) {
+
+		HashMap<Hotel, Integer> ratingMap = new HashMap<Hotel, Integer>();
+		for(Hotel hotel : cheapestHotels) {
+			ratingMap.put(hotel, hotel.getRating());
+		}
+		int maxRating =Collections.max(ratingMap.values()); 
+		System.out.println(maxRating);
+		System.out.println(cheapestHotels.size());
+		for(Hotel hotel : cheapestHotels) {
+			if(hotel.getRating() != maxRating) {
+				cheapestHotels.remove(hotel);
+				//rated = hotel.getName();
+			}
+		}
+		System.out.println(cheapestHotels.size());
+		return cheapestHotels;	
+
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public ArrayList<Hotel> findCheapestBestRatedHotels(){
+		ArrayList<Hotel> cheapestHotel = minimumRate();
+		ArrayList<Hotel> bestRatedHotel = bestRatedHotel(cheapestHotel);
+		return bestRatedHotel;
 	}
 	public int size() {
 		return hotelList.size() ;
 	}
 
-	//		public static void main(String[] args) {
-	//			System.out.println("Welcome to Hotel Reservation Program");
-	//			addHotel();
-	//			cheapestBestRatedHotel();
-	//		}
+	public static void main(String[] args) {
+		System.out.println("Welcome to Hotel Reservation Program");
+		HotelReservation hotels = new HotelReservation();
+		hotels.addHotel();
+		ArrayList<Hotel> myhotels = hotels.minimumRate();
+		for(Hotel hots : myhotels) {
+			System.out.println(hots);
+
+		}
+		hotels.bestRatedHotel(myhotels);
+	}
 }
+
 
