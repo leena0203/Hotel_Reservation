@@ -31,7 +31,7 @@ class HotelReservationTest {
 		reservation.addHotel(input);
 		reservation.addHotel(input);
 		reservation.addHotel(input);
-		Hotel hotel = new Hotel("LakeWood", 110, 90, 4);
+		Hotel hotel = new Hotel("LakeWood", 110, 90, 4, "Regular");
 		ArrayList<Hotel> hotelList = new ArrayList<Hotel>();
 		hotelList.add(hotel);
 		assertEquals(hotelList, reservation.findCheapestHotel(input));
@@ -69,7 +69,7 @@ class HotelReservationTest {
 		reservation.addHotel(input);
 		reservation.addHotel(input);
 		reservation.addHotel(input);
-		Hotel hotel = new Hotel("LakeWood", 90, 4, 110);
+		Hotel hotel = new Hotel("LakeWood", 110, 90, 4, "Regular");
 		ArrayList<Hotel> hotelList = new ArrayList<Hotel>();
 		hotelList.add(hotel);
 		assertEquals(hotelList, reservation.findCheapestHotel(input));
@@ -84,7 +84,7 @@ class HotelReservationTest {
 		reservation.addHotel(input);
 		reservation.addHotel(input); 
 		reservation.addHotel(input);
-		Hotel hotel = new Hotel("RidgeWood", 220, 150, 5); 
+		Hotel hotel = new Hotel("RidgeWood", 220, 150, 5, "Regular"); 
 		ArrayList<Hotel> hotelList = new ArrayList<Hotel>();
 		hotelList.add(hotel);
 		assertTrue(reservation.findBestRatedHotels(input).equals(hotelList)); 

@@ -5,29 +5,40 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.Scanner;
+import java.time.DateTimeException;
 
 public class HotelReservation {
 	static long totalDays,totalWeekDays,totalWeekEndDays;
 	static String customerType;
 	public ArrayList<Hotel> hotelList = new ArrayList<Hotel>();
 	/**
-	 * UC1
+	 * Usecase 1
 	 * Function adds Hotel to the Hotel Reservation System
 	 * @param input
 	 * @return
 	 */
 	public void addHotel(Scanner input) {
-		getInput(input);
-		Hotel hotel1,hotel2,hotel3;
-		if(customerType.equals("Regular")) {
-			hotel1 = new Hotel("LakeWood", "Regular", 90, 4, 110);
-			hotel2 = new Hotel("BridgeWood", "Regular", 50, 3, 150);
-			hotel3 = new Hotel("RidgeWood" , "Regular", 150, 5, 220);
+		Hotel hotel1 = null;
+		Hotel hotel2 = null;
+		Hotel hotel3 = null;
+		try {
+			getInput(input);
+			if(customerType.equals("Regular")) {
+				hotel1 = new Hotel("LakeWood", 110, 90, 4, "Regular");
+				hotel2 = new Hotel("BridgeWood", 150, 50, 3, "Regular");
+				hotel3 = new Hotel("RidgeWood" , 220, 150, 5, "Regular");
+			}
+			else if(customerType.equals("Reward")){
+				hotel1 = new Hotel("LakeWood", 80, 80, 4, "Reward");
+				hotel2 = new Hotel("BridgeWood", 110, 50, 3, "Reward");
+				hotel3 = new Hotel("RidgeWood" , 100, 40, 5, "Reward");
+			}
+			else {
+				throw new InvalidEntryException("Invalid Customer Type");
+			}
 		}
-		else {
-			hotel1 = new Hotel("LakeWood", "Reward", 80, 4, 80);
-			hotel2 = new Hotel("BridgeWood", "Reward", 50, 3, 110);
-			hotel3 = new Hotel("RidgeWood" , "Reward", 40, 5, 100);
+		catch(InvalidEntryException exception) {
+			System.out.println(exception);
 		}
 		hotelList.add(hotel1);
 		hotelList.add(hotel2);
@@ -55,9 +66,15 @@ public class HotelReservation {
 		customerType = dates[0];
 		for(int iteration = 1; iteration<=2 ; iteration++) {
 			//Convert dates to standard format
+			try {
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMMyyyy", Locale.ENGLISH);
 			LocalDate date = LocalDate.parse(dates[iteration], formatter);
 			localDate[iteration-1] = date;
+			}
+			catch(DateTimeException exception) {
+				System.out.println("Invalid Date Entry");
+				getInput(input);
+			}
 		}
 		LocalDate start = localDate[0];
 		LocalDate end = localDate[1];
@@ -78,7 +95,7 @@ public class HotelReservation {
 		return (int)totalWeekEndDays;	
 	}
 	/**
-	 * UC2
+	 * Usecase 4
 	 * Modification of the function to take into account different rates for weekend and weekdays
 	 * @param input
 	 * @return
@@ -93,9 +110,9 @@ public class HotelReservation {
 		HashMap<Hotel,Integer> hotelMap = new HashMap<Hotel,Integer>();
 		HashMap<Hotel,Integer> ratingMap = new HashMap<Hotel,Integer>();
 		for(Hotel hotel : hotelList) {
-			int totalRate = hotel.getWeekdayRate() * (int)totalWeekDays + hotel.getWeekendRate() * (int)totalWeekEndDays;
+			int totalRate = hotel.getWeekDayRate() * (int)totalWeekDays + hotel.getWeekEndRate() * (int)totalWeekEndDays;
 			hotelMap.put(hotel, totalRate);
-			ratingMap.put(hotel, hotel.getRating());
+			ratingMap.put(hotel, hotel.getHotelRatings());
 		}
 		minimumRate = Collections.min(hotelMap.values());
 		
@@ -106,16 +123,16 @@ public class HotelReservation {
 		}
 		int maximumRating = Collections.max(ratingMap.values());
 		for(Hotel hotel : cheapestHotels) {
-			if(hotel.getRating() != maximumRating) {
+			if(hotel.getHotelRatings() != maximumRating) {
 				cheapestHotels.remove(hotel);
 				continue;
 			}
-			System.out.println(hotel.getName() + "Ratings : " + hotel.getRating() +" Total Rate : " + minimumRate);
+			System.out.println(hotel.getHotelName() + "Ratings : " + hotel.getHotelRatings() +" Total Rate : " + minimumRate);
 		}
 		return cheapestHotels;
 	}
 	/**
-	 *UC7
+	 *UseCase 7
 	 *Function to find Best Rated Hotels
 	 * @return
 	 */
@@ -123,13 +140,13 @@ public class HotelReservation {
 		ArrayList<Hotel> bestRatedHotels = new ArrayList<Hotel>();
 		HashMap<Hotel,Integer> ratingMap = new HashMap<Hotel,Integer>();
 		for(Hotel hotel : hotelList) {
-			ratingMap.put(hotel, hotel.getRating());
+			ratingMap.put(hotel, hotel.getHotelRatings());
 		}
 		int maximumRating = Collections.max(ratingMap.values());
 		for(Map.Entry<Hotel, Integer> entry : ratingMap.entrySet()) {
 			if(entry.getValue() == maximumRating) {
 				bestRatedHotels.add(entry.getKey());
-				System.out.println("Hotel Name : " + entry.getKey().getName() + "Ratings : " + entry.getKey().getRating() +" Total Rate : " + ((int) totalWeekDays * entry.getKey().getWeekdayRate() + (int)totalWeekEndDays * entry.getKey().getWeekendRate()));
+				System.out.println("Hotel Name : " + entry.getKey().getHotelName() + "Ratings : " + entry.getKey().getHotelRatings() +" Total Rate : " + ((int) totalWeekDays * entry.getKey().getWeekDayRate() + (int)totalWeekEndDays * entry.getKey().getWeekEndRate()));
 			}
 		}
 		for(Hotel hotel : bestRatedHotels) {

@@ -1,31 +1,23 @@
 package com.HotelReservation;
 
-import java.util.Scanner;
-
 public class Hotel {
-	String name,customerType;
-	int weekdayRate, weekendRate,rating;
-	public int getRating() {
-		return rating;
-	}
-	public void setRating(int rating) {
-		this.rating = rating;
-	}
-	public Hotel(String name, int weekdayRate, int weekendRate, int rating) {
-		super();
-		this.name = name;
-		this.weekdayRate = weekdayRate;
-		this.weekendRate = weekendRate;
-		this.rating = rating;
-		
-	}
-	public Hotel(String name, String customerType, int weekdayRate, int weekendRate, int rating) {
-		super();
-		this.name = name;
+	private String hotelName;
+	public int weekDayRate;
+	public int weekEndRate;
+	public int hotelRatings;
+	public String customerType;
+	public Hotel(String hotelName, int weekDayRate, int weekEndRate, int hotelRatings, String customerType) {
+		this.hotelName = hotelName;
+		this.weekDayRate = weekDayRate;
+		this.weekEndRate = weekEndRate;
+		this.hotelRatings = hotelRatings;
 		this.customerType = customerType;
-		this.weekdayRate = weekdayRate;
-		this.weekendRate = weekendRate;
-		this.rating = rating;
+	}
+	public String getHotelName() {
+		return hotelName;
+	}
+	public void setHotelName(String hotelName) {
+		this.hotelName = hotelName;
 	}
 	public String getCustomerType() {
 		return customerType;
@@ -33,39 +25,28 @@ public class Hotel {
 	public void setCustomerType(String customerType) {
 		this.customerType = customerType;
 	}
-	public String getName() {
-		return name;
+	public int getWeekDayRate() {
+		return weekDayRate;
+	}	
+	public void setWeekDayRate(int weekDayRate) {
+		this.weekDayRate = weekDayRate;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public int getWeekEndRate() {
+		return weekEndRate;
 	}
-	public int getWeekdayRate() {
-		return weekdayRate;
+	public void setWeekEndRate(int weekEndRate) {
+		this.weekEndRate = weekEndRate;
 	}
-	public void setWeekdayRate(int weekdayRate) {
-		this.weekdayRate = weekdayRate;
+	public int getHotelRatings() {
+		return hotelRatings;
 	}
-	public int getWeekendRate() {
-		return weekendRate;
+	public void setHotelRatings(int hotelRatings) {
+		this.hotelRatings = hotelRatings;
 	}
-	public void setWeekendRate(int weekendRate) {
-		this.weekendRate = weekendRate;
-	}
-	public Hotel(String name, int weekdayRate) {
-		super();
-		this.name = name;
-		this.weekdayRate = weekdayRate;
-	}
-	public Hotel(String name, int weekdayRate, int weekendRate) {
-		super();
-		this.name = name;
-		this.weekdayRate = weekdayRate;
-		this.weekendRate = weekendRate;
-	}
+	@Override
 	public String toString() {
-		return this.getName();
+		String hotel = "Hotel : " + this.getHotelName() + "\n" + "Customer Type : " +this.getCustomerType() + "\n" + "WeekDayRate : " +
+	                   this.getWeekDayRate() + "$\n" + "WeekEndRate : " + this.getWeekEndRate() + "Hotel Ratings: " + this.getHotelRatings() + "\n";
+		return hotel;
 	}
-	
-
 }
-
