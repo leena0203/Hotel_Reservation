@@ -1,4 +1,4 @@
-package com.HotelReservation;
+package com.capgemini.hotelreservation;
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+
+import com.capgemini.hotelreservation.HotelReservation;
 
 class HotelReservationTest {
 	/**
@@ -36,27 +38,27 @@ class HotelReservationTest {
 		hotelList.add(hotel2);
 		assertEquals(hotelList.size(), reservation.findCheapestHotels().size());
 	}
-	/**
-	 * TestCase 3
-	 * 
-	 */
-	@Test
-	public void whenHotelAdded_toReservationSystem_withWeekdayAndWeekendRates_shouldReturnSizeAs3() {
-		Scanner input = new Scanner(System.in);
-		HotelReservation reservation = new HotelReservation();
-		reservation.addHotel(input);
-		assertEquals(3, reservation.hotelList.size());
-	}
-	/**
-	 * TestCase 5
-	 */
-	@Test
-	public void whenHotelAdded_toReservationSystem_withRatings_shouldReturnSizeAs3() {
-		Scanner input = new Scanner(System.in);
-		HotelReservation reservation = new HotelReservation();
-		reservation.addHotel(input);
-		assertEquals(3,reservation.hotelList.size());
-	}
+//	/**
+//	 * TestCase 3
+//	 * 
+//	 */
+//	@Test
+//	public void whenHotelAdded_toReservationSystem_withWeekdayAndWeekendRates_shouldReturnSizeAs3() {
+//		Scanner input = new Scanner(System.in);
+//		HotelReservation reservation = new HotelReservation();
+//		reservation.addHotel(input);
+//		assertEquals(3, reservation.hotelList.size());
+//	}
+//	/**
+//	 * TestCase 5
+//	 */
+//	@Test
+//	public void whenHotelAdded_toReservationSystem_withRatings_shouldReturnSizeAs3() {
+//		Scanner input = new Scanner(System.in);
+//		HotelReservation reservation = new HotelReservation();
+//		reservation.addHotel(input);
+//		assertEquals(3,reservation.hotelList.size());
+//	}
 	/**
 	 * TestCase 6
 	 */

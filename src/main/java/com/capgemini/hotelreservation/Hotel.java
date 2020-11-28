@@ -1,4 +1,4 @@
-package com.HotelReservation;
+package com.capgemini.hotelreservation;
 
 public class Hotel {
 	private String hotelName;

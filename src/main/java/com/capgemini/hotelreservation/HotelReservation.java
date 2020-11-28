@@ -1,4 +1,4 @@
-package com.HotelReservation;
+package com.capgemini.hotelreservation;
 import java.time.LocalDate;
 import java.time.temporal.*;
 import java.time.format.DateTimeFormatter;
